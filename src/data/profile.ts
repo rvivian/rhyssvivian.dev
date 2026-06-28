@@ -4,9 +4,9 @@ export const site = {
   title: "Rhyss Vivian | Infrastructure, Cybersecurity, and Platform Leadership",
   description:
     "Senior technology leader with enterprise infrastructure, cybersecurity, IAM, and hands-on platform building experience.",
-  email: "hello@rhyssvivian.dev",
-  linkedInUrl: "https://www.linkedin.com/in/rhyssvivian",
-  githubUrl: "https://github.com/rhyssvivian",
+  email: "me@rhyssvivian.dev",
+  linkedInUrl: "https://www.linkedin.com/in/rhyss-vivian",
+  githubUrl: "https://github.com/rvivian",
   nav: [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
