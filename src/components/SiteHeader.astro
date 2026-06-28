@@ -12,30 +12,46 @@ const isActive = (href: string) => {
 };
 ---
 
-<header class="sticky top-0 z-40 border-b border-slate-200/80 bg-stone-50/90 backdrop-blur">
+<header class="sticky top-0 z-40 border-b theme-border theme-header backdrop-blur">
   <nav
     class="mx-auto flex max-w-6xl flex-col items-start gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-6"
     aria-label="Primary navigation"
   >
-    <a href="/" class="text-sm font-semibold tracking-normal text-slate-950">
+    <a href="/" class="text-sm font-semibold tracking-normal theme-text">
       {site.name}
     </a>
-    <div class="flex w-full flex-wrap items-center gap-1 sm:w-auto sm:justify-end">
+    <div class="site-nav-actions">
       {
         site.nav.map((item) => (
           <a
             href={item.href}
+            aria-current={isActive(item.href) ? "page" : undefined}
             class:list={[
-              "rounded-md px-3 py-2 text-sm font-medium transition",
+              "rounded-md px-3 py-2 text-sm font-medium transition focus-ring",
               isActive(item.href)
-                ? "bg-slate-950 text-white"
-                : "text-slate-700 hover:bg-slate-200/70 hover:text-slate-950",
+                ? "nav-link-active"
+                : "nav-link",
             ]}
           >
             {item.label}
           </a>
         ))
       }
+      <button
+        type="button"
+        class="theme-toggle focus-ring"
+        data-theme-toggle
+        aria-label="Switch to light mode"
+        aria-pressed="false"
+      >
+        <span data-theme-toggle-label>Light</span>
+      </button>
     </div>
   </nav>
 </header>
+
+<script>
+  import { initThemeToggle } from "../scripts/theme-toggle.js";
+
+  initThemeToggle();
+</script>

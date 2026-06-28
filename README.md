@@ -1,10 +1,12 @@
 # rhyssvivian.dev
 
-Personal and professional website for Rhys Vivian, built with Astro, TypeScript, Tailwind CSS, and Markdown content collections.
+Personal and professional website for Rhyss Vivian, built with Astro, TypeScript, Tailwind CSS, and Markdown content collections.
 
 ## Purpose
 
-The site positions Rhys as a senior technology leader with enterprise infrastructure, cybersecurity, IAM, platform, and hands-on builder credibility. The primary audience is future employers for platform, infrastructure, security, and technology leadership roles. Technical collaborators are the secondary audience.
+The site positions Rhyss as a senior technology leader with enterprise infrastructure, cybersecurity, IAM, platform, and hands-on builder credibility. The primary audience is future employers for platform, infrastructure, security, and technology leadership roles. Technical collaborators are the secondary audience.
+
+The visual system is dark by default with a persistent light-mode toggle. Accessibility is treated as a first-class requirement: semantic landmarks, skip navigation, visible focus states, current-page navigation state, reduced-motion handling, and high-contrast theme tokens are part of the baseline.
 
 ## Commands
 
@@ -13,6 +15,7 @@ Run commands from the project root:
 ```powershell
 npm install
 npm run dev
+npm test
 npm run check
 npm run build
 npm run preview
@@ -27,7 +30,9 @@ src/components/        Reusable Astro components
 src/content/projects/  Markdown project entries
 src/content/blog/      Markdown blog drafts and future posts
 src/data/              Site profile and navigation data
+src/scripts/           Small client-side behavior modules
 src/styles/            Tailwind and global CSS
+test/                  Node tests for client-side behavior
 public/images/         Project-owned image assets
 docs/spec.md           Approved project spec
 ```

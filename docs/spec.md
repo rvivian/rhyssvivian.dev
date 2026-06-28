@@ -2,13 +2,13 @@
 
 ## Objective
 
-Build a personal/professional website that positions Rhys Vivian as a senior technology leader with enterprise infrastructure, cybersecurity, IAM, compliance, platform, and hands-on builder credibility.
+Build a personal/professional website that positions Rhyss Vivian as a senior technology leader with enterprise infrastructure, cybersecurity, IAM, compliance, platform, and hands-on builder credibility.
 
 Primary audience: future employers for Senior Manager/Director-level to CIO/CTO-track roles.
 
 Secondary audience: technical collaborators.
 
-Success means a reader can understand in under 60 seconds that Rhys is a strong leader with credible technical depth, enterprise infrastructure experience, cybersecurity context, and an active transition toward platform and business leadership.
+Success means a reader can understand in under 60 seconds that Rhyss is a strong leader with credible technical depth, enterprise infrastructure experience, cybersecurity context, and an active transition toward platform and business leadership.
 
 ## Tech Stack
 
@@ -18,6 +18,7 @@ Success means a reader can understand in under 60 seconds that Rhys is a strong 
 - Markdown content collections
 - Static output
 - npm package management
+- Dark-first visual system with persistent light-mode toggle
 
 Hosting remains portable between GitHub Pages and Cloudflare Pages.
 
@@ -26,6 +27,7 @@ Hosting remains portable between GitHub Pages and Cloudflare Pages.
 ```powershell
 npm install
 npm run dev
+npm test
 npm run check
 npm run build
 npm run preview
@@ -40,7 +42,9 @@ src/components/        Reusable UI sections
 src/content/projects/  Markdown project entries
 src/content/blog/      Markdown blog drafts and future posts
 src/data/              Site profile and navigation data
+src/scripts/           Client-side behavior modules
 src/styles/            Tailwind and global CSS
+test/                  Node tests for behavior modules
 public/images/         Static image assets
 docs/                  Project documentation
 ```
@@ -68,6 +72,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 - `npm run check` validates Astro, TypeScript, and content collection typing.
 - `npm run build` verifies the static production output.
 - Manual browser checks cover desktop and mobile layout before publishing.
+- Accessibility checks cover semantic landmarks, keyboard focus visibility, skip navigation, color contrast, current-page navigation state, and reduced-motion behavior.
 - Add Playwright later only when the site gains meaningful interactions or regression risk.
 
 ## Boundaries
@@ -76,6 +81,8 @@ Always:
 
 - Keep the site static-first for v1.
 - Use accessible, semantic markup.
+- Keep dark mode as the default presentation and preserve the light-mode toggle.
+- Maintain WCAG AA-oriented contrast and keyboard access.
 - Validate with `npm run check` and `npm run build`.
 - Keep enterprise and cybersecurity project details safely anonymized.
 
@@ -103,6 +110,8 @@ Never:
 - Projects are powered by Markdown content entries.
 - Blog is structurally ready for future writing.
 - The tone is technical plus executive.
+- Dark mode is the primary visual mode, with a working light mode.
+- Core pages meet the project's accessibility baseline.
 - Deployment remains viable on GitHub Pages or Cloudflare Pages.
 
 ## Out of Scope for v1

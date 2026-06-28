@@ -30,21 +30,21 @@ const projects = (await getCollection("projects"))
         platform strategy, automation, and executive technology leadership.
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <a class="rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-slate-950 hover:bg-teal-100" href="/projects">
+        <a class="rounded-md px-4 py-2.5 text-sm font-semibold btn-primary focus-ring" href="/projects">
           View projects
         </a>
-        <a class="rounded-md border border-white/50 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10" href="/contact">
+        <a class="rounded-md border px-4 py-2.5 text-sm font-semibold btn-secondary focus-ring" href="/contact">
           Contact
         </a>
       </div>
     </div>
   </section>
 
-  <section class="border-b border-slate-200 bg-white">
+  <section class="border-b theme-border theme-surface">
     <div class="mx-auto grid max-w-6xl gap-4 px-4 py-8 sm:grid-cols-2 sm:px-6 lg:grid-cols-3">
       {
         proofPoints.map((point) => (
-          <div class="rounded-lg border border-slate-200 bg-stone-50 p-4 text-sm font-medium leading-6 text-slate-700">
+          <div class="rounded-lg border theme-card p-4 text-sm font-medium leading-6 theme-muted">
             {point}
           </div>
         ))
@@ -61,9 +61,9 @@ const projects = (await getCollection("projects"))
     <div class="mt-10 grid gap-4 md:grid-cols-2">
       {
         capabilityAreas.map((area) => (
-          <article class="rounded-lg border border-slate-200 bg-white p-6">
-            <h3 class="text-lg font-semibold tracking-normal text-slate-950">{area.title}</h3>
-            <p class="mt-3 leading-7 text-slate-600">{area.description}</p>
+          <article class="rounded-lg border theme-card p-6">
+            <h3 class="text-lg font-semibold tracking-normal theme-text">{area.title}</h3>
+            <p class="mt-3 leading-7 theme-muted">{area.description}</p>
           </article>
         ))
       }
@@ -93,7 +93,7 @@ const projects = (await getCollection("projects"))
         title="MBA work and writing will become part of the system."
         description="The blog is ready for essays, course reflections, leadership notes, and platform/security writing as the site grows."
       />
-      <a class="rounded-md bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white hover:bg-teal-800" href="/blog">
+      <a class="rounded-md px-4 py-2.5 text-sm font-semibold btn-primary focus-ring" href="/blog">
         Visit blog
       </a>
     </div>

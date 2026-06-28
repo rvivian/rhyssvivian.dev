@@ -17,28 +17,28 @@ const { Content } = await render(project);
 
 <BaseLayout title={project.data.title} description={project.data.summary}>
   <article>
-    <header class="border-b border-slate-200 bg-white">
+    <header class="border-b theme-border theme-surface">
       <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:py-20">
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] theme-eyebrow">
           {project.data.category} / {project.data.year}
         </p>
-        <h1 class="mt-4 text-4xl font-semibold tracking-normal text-slate-950 sm:text-5xl">
+        <h1 class="mt-4 text-4xl font-semibold tracking-normal theme-text sm:text-5xl">
           {project.data.title}
         </h1>
-        <p class="mt-6 text-lg leading-8 text-slate-600">{project.data.summary}</p>
+        <p class="mt-6 text-lg leading-8 theme-muted">{project.data.summary}</p>
         <div class="mt-6 flex flex-wrap gap-2">
-          {project.data.tags.map((tag) => <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700">{tag}</span>)}
+          {project.data.tags.map((tag) => <span class="rounded-md px-2.5 py-1 text-xs font-medium theme-tag">{tag}</span>)}
         </div>
       </div>
     </header>
 
     <div class="mx-auto grid max-w-4xl gap-10 px-4 py-12 sm:px-6 lg:py-16">
       <section>
-        <h2 class="text-xl font-semibold tracking-normal text-slate-950">Impact</h2>
+        <h2 class="text-xl font-semibold tracking-normal theme-text">Impact</h2>
         <ul class="mt-4 grid gap-3">
           {
             project.data.impact.map((item) => (
-              <li class="rounded-lg border border-slate-200 bg-white p-4 leading-7 text-slate-700">{item}</li>
+              <li class="rounded-lg border theme-card p-4 leading-7 theme-muted">{item}</li>
             ))
           }
         </ul>

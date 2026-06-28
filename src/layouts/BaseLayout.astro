@@ -15,12 +15,13 @@ const canonicalUrl = new URL(Astro.url.pathname, `https://${site.domain}`).toStr
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#07111f" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
@@ -31,10 +32,21 @@ const canonicalUrl = new URL(Astro.url.pathname, `https://${site.domain}`).toStr
     <meta property="og:image" content="/images/platform-leadership-hero.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <title>{pageTitle}</title>
+    <script is:inline>
+      (() => {
+        try {
+          const storedTheme = localStorage.getItem("rhyssvivian-theme");
+          document.documentElement.dataset.theme = storedTheme === "light" ? "light" : "dark";
+        } catch {
+          document.documentElement.dataset.theme = "dark";
+        }
+      })();
+    </script>
   </head>
-  <body class="min-h-screen bg-stone-50 text-slate-950 antialiased">
+  <body class="min-h-screen antialiased">
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <SiteHeader />
-    <main>
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
     <SiteFooter />

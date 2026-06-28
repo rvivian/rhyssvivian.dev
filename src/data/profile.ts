@@ -1,7 +1,7 @@
 export const site = {
-  name: "Rhys Vivian",
+  name: "Rhyss Vivian",
   domain: "rhyssvivian.dev",
-  title: "Rhys Vivian | Infrastructure, Cybersecurity, and Platform Leadership",
+  title: "Rhyss Vivian | Infrastructure, Cybersecurity, and Platform Leadership",
   description:
     "Senior technology leader with enterprise infrastructure, cybersecurity, IAM, and hands-on platform building experience.",
   email: "hello@rhyssvivian.dev",

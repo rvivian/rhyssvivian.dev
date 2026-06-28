@@ -17,15 +17,15 @@ const { Content } = await render(post);
 
 <BaseLayout title={post.data.title} description={post.data.description}>
   <article>
-    <header class="border-b border-slate-200 bg-white">
+    <header class="border-b theme-border theme-surface">
       <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:py-20">
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] theme-eyebrow">
           {post.data.pubDate.toLocaleDateString("en-US")}
         </p>
-        <h1 class="mt-4 text-4xl font-semibold tracking-normal text-slate-950 sm:text-5xl">
+        <h1 class="mt-4 text-4xl font-semibold tracking-normal theme-text sm:text-5xl">
           {post.data.title}
         </h1>
-        <p class="mt-6 text-lg leading-8 text-slate-600">{post.data.description}</p>
+        <p class="mt-6 text-lg leading-8 theme-muted">{post.data.description}</p>
       </div>
     </header>
     <div class="content mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:py-16">
