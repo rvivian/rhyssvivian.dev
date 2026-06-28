@@ -1,0 +1,73 @@
+---
+import SectionHeading from "../components/SectionHeading.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="About" description="About Rhys Vivian: enterprise infrastructure, cybersecurity, platform direction, and leadership.">
+  <section class="border-b border-slate-200 bg-white">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700">About</p>
+      <h1 class="mt-4 max-w-4xl text-4xl font-semibold tracking-normal text-slate-950 sm:text-5xl">
+        I am a technology leader with a technical foundation, growing toward broader platform and executive scope.
+      </h1>
+      <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+        My background is rooted in enterprise infrastructure: the operational systems, identity
+        platforms, network changes, security controls, and governance work that organizations depend on.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:py-20">
+    <SectionHeading
+      eyebrow="Leadership shape"
+      title="The work sits between technical reality and organizational direction."
+      description="I am most interested in roles where platform, infrastructure, cybersecurity, and leadership are not separate conversations."
+    />
+    <div class="space-y-6 leading-8 text-slate-600">
+      <p>
+        I have spent a lot of time in traditional enterprise infrastructure, where strong outcomes
+        require more than tool familiarity. They require change management, communication, timing,
+        vendor coordination, risk judgment, and steady execution under operational constraints.
+      </p>
+      <p>
+        I am now spending more time building: moving a homelab toward Infrastructure as Code,
+        pushing more configuration into versioned workflows, and sharpening the software/platform
+        side of my skill set without pretending my background is something it is not.
+      </p>
+      <p>
+        This fall, I begin MBA work that will add more structure to the business side of the same
+        arc: how technology strategy, security, operations, and leadership decisions compound.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-slate-950 text-white">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+      <SectionHeading
+        eyebrow="Direction"
+        title="Senior technology leadership, with hands still on the systems."
+        description="The long-term direction is CIO/CTO-level work: setting technology direction with enough technical context to know where the hard parts are."
+      />
+      <div class="mt-10 grid gap-4 md:grid-cols-3">
+        <article class="rounded-lg border border-white/15 bg-white/5 p-5">
+          <h2 class="text-lg font-semibold tracking-normal">Platform</h2>
+          <p class="mt-3 leading-7 text-slate-300">
+            Repeatable systems, operational leverage, automation, and practical standards.
+          </p>
+        </article>
+        <article class="rounded-lg border border-white/15 bg-white/5 p-5">
+          <h2 class="text-lg font-semibold tracking-normal">Security</h2>
+          <p class="mt-3 leading-7 text-slate-300">
+            IAM, compliance readiness, control implementation, and risk-aware infrastructure.
+          </p>
+        </article>
+        <article class="rounded-lg border border-white/15 bg-white/5 p-5">
+          <h2 class="text-lg font-semibold tracking-normal">Leadership</h2>
+          <p class="mt-3 leading-7 text-slate-300">
+            Clear priorities, accountable execution, and translation between business and technical teams.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

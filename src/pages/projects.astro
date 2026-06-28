@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "../components/ProjectCard.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Projects" description="Selected infrastructure, cybersecurity, platform, and builder projects from Rhys Vivian.">
+  <section class="border-b border-slate-200 bg-white">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+      <SectionHeading
+        eyebrow="Projects"
+        title="Selected work across infrastructure, security, and platform practice."
+        description="Some details stay intentionally high-level. The focus is on domain, leadership pattern, and operational outcome."
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+    <div class="grid gap-5 md:grid-cols-2">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </section>
+</BaseLayout>
