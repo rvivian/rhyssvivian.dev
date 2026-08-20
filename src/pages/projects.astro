@@ -1,26 +1,20 @@
 ---
 import { getCollection } from "astro:content";
-import ProjectCard from "../components/ProjectCard.astro";
-import SectionHeading from "../components/SectionHeading.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import FieldProjectCard from "../components/FieldProjectCard.astro";
 
 const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
 ---
 
-<BaseLayout title="Projects" description="Selected infrastructure, cybersecurity, platform, and builder projects from Rhyss Vivian.">
-  <section class="border-b theme-border theme-surface">
-    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
-      <SectionHeading
-        eyebrow="Projects"
-        title="Selected work across infrastructure, security, and platform practice."
-        description="Some details stay intentionally high-level. The focus is on domain, leadership pattern, and operational outcome."
-      />
-    </div>
-  </section>
-
-  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
-    <div class="grid gap-5 md:grid-cols-2">
-      {projects.map((project) => <ProjectCard project={project} />)}
+<BaseLayout title="Projects" description="Selected infrastructure, security, and platform projects from Rhyss Vivian.">
+  <header class="site-shell py-20 sm:py-28">
+    <p class="kicker">Projects · Systems in practice</p>
+    <h1 class="mt-6 max-w-4xl text-5xl font-medium leading-[1.02] tracking-[-0.06em] theme-text sm:text-7xl">Work measured by what becomes more durable.</h1>
+    <p class="mt-7 max-w-2xl text-lg leading-8 theme-muted">Selected infrastructure, security, and platform work. Sensitive details remain deliberately abstracted; the operating patterns and lessons do not.</p>
+  </header>
+  <section class="site-shell pb-20 sm:pb-28">
+    <div class="grid gap-4 md:grid-cols-2">
+      {projects.map((project, index) => <FieldProjectCard project={project} index={index} />)}
     </div>
   </section>
 </BaseLayout>

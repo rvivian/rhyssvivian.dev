@@ -1,0 +1,80 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { formatLocation } from "../data/profile";
+import ThinkingItem from "./ThinkingItem.astro";
+import FieldProjectCard from "./FieldProjectCard.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft && data.featured))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+const projects = (await getCollection("projects", ({ data }) => data.featured))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="field-hero">
+    <div class="field-grid" aria-hidden="true"></div>
+    <div class="contour-field" aria-hidden="true">
+      {Array.from({ length: 11 }, (_, index) => <span style={`--i: ${index}`}></span>)}
+      <div class="waypoint"><i></i></div>
+    </div>
+    <div class="site-shell relative h-full">
+      <div class="hero-copy">
+        <p class="kicker">Technology infrastructure · Systems · Leadership</p>
+        <h1 class="display-title mt-7">Rhyss Vivian<span>Field notes from the systems layer.</span></h1>
+        <p class="hero-intro mt-8">
+          I lead technology where infrastructure, security, and organizational direction meet—building durable systems and the teams that operate them.
+        </p>
+      </div>
+      <div class="hero-index theme-soft">
+        <span>{formatLocation()}</span>
+        <span class="hidden sm:inline">Waypoint 01 · True North</span>
+        <span>59.000 N</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell py-16 sm:py-20">
+    <div class="grid gap-8 lg:grid-cols-[12rem_1fr] lg:gap-16">
+      <p class="section-label">01 / Orientation</p>
+      <div class="max-w-3xl">
+        <p class="font-display text-2xl leading-[1.45] tracking-[-0.035em] theme-text sm:text-3xl">
+          My work spans enterprise infrastructure, cybersecurity, platform practice, and the leadership decisions that make technical change last.
+        </p>
+        <p class="mt-6 max-w-2xl text-lg leading-8 theme-muted">
+          This is a working journal: selected ideas, systems work, and observations from the route between hands-on engineering and executive technology leadership.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell py-8 sm:py-12">
+    <div class="grid gap-8 lg:grid-cols-[12rem_1fr] lg:gap-16">
+      <div>
+        <p class="section-label">02 / Thinking</p>
+        <a class="text-link mt-5 inline-block" href="/thinking">All entries</a>
+      </div>
+      <div>
+        {posts.map((post, index) => <ThinkingItem post={post} index={index} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell py-16 sm:py-24">
+    <div class="section-rule pt-8">
+      <div class="flex items-end justify-between gap-6">
+        <div>
+          <p class="section-label">03 / Selected projects</p>
+          <h2 class="mt-4 max-w-2xl text-3xl font-medium tracking-[-0.045em] theme-text sm:text-4xl">Systems work, documented in the open where it can be.</h2>
+        </div>
+        <a class="text-link hidden sm:block" href="/projects">Project index</a>
+      </div>
+      <div class="mt-10 grid gap-4 lg:grid-cols-3">
+        {projects.map((project, index) => <FieldProjectCard project={project} index={index} />)}
+      </div>
+      <a class="text-link mt-8 inline-block sm:hidden" href="/projects">Project index</a>
+    </div>
+  </section>
+</BaseLayout>

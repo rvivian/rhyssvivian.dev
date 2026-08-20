@@ -1,8 +1,8 @@
 ---
-import SiteFooter from "../components/SiteFooter.astro";
-import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/FieldFooter.astro";
+import SiteHeader from "../components/FieldHeader.astro";
 import { site } from "../data/profile";
-import "../styles/global.css";
+import "../styles/field-journal.css";
 
 interface Props {
   title?: string;
@@ -21,7 +21,7 @@ const canonicalUrl = new URL(Astro.url.pathname, `https://${site.domain}`).toStr
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#07111f" />
+    <meta name="theme-color" content="#0c1517" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
@@ -29,7 +29,7 @@ const canonicalUrl = new URL(Astro.url.pathname, `https://${site.domain}`).toStr
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content="/images/platform-leadership-hero.png" />
+    <meta property="og:image" content={new URL("/images/platform-leadership-hero.png", `https://${site.domain}`).toString()} />
     <meta name="twitter:card" content="summary_large_image" />
     <title>{pageTitle}</title>
     <script is:inline>

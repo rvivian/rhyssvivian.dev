@@ -1,0 +1,19 @@
+---
+import { formatLocation, site } from "../data/profile";
+---
+
+<footer class="mt-12 border-t theme-border">
+  <div class="site-shell grid gap-10 py-10 sm:grid-cols-[1fr_auto] sm:items-end sm:py-14">
+    <div>
+      <p class="font-display text-lg font-medium tracking-[-0.03em] theme-text">Rhyss Vivian</p>
+      <p class="mt-2 max-w-xl leading-7 theme-muted">Technology infrastructure, systems, architecture, and leadership—from Alaska and points beyond.</p>
+      <p class="meta mt-5 text-[0.62rem] uppercase tracking-[0.12em] theme-soft">{formatLocation()} · Grid ref 001</p>
+    </div>
+    <nav class="flex flex-wrap gap-x-5 gap-y-3" aria-label="Social links">
+      <a class="footer-link focus-ring" href={site.githubUrl}>GitHub</a>
+      <a class="footer-link focus-ring" href={site.linkedInUrl}>LinkedIn</a>
+      <a class="footer-link focus-ring" href="/rss.xml">RSS</a>
+      <a class="footer-link focus-ring" href={`mailto:${site.email}`}>Email</a>
+    </nav>
+  </div>
+</footer>

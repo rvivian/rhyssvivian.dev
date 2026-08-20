@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ThinkingItem from "../components/ThinkingItem.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title="Thinking" description="Field notes from Rhyss Vivian on systems, infrastructure, security, leadership, and strategy.">
+  <header class="site-shell py-20 sm:py-28">
+    <p class="kicker">Thinking · Field journal</p>
+    <h1 class="mt-6 max-w-4xl text-5xl font-medium leading-[1.02] tracking-[-0.06em] theme-text sm:text-7xl">Notes from the route between systems and strategy.</h1>
+    <p class="mt-7 max-w-2xl text-lg leading-8 theme-muted">Essays and working notes on the technical, operational, and organizational layers of durable technology.</p>
+  </header>
+  <section class="site-shell pb-20 sm:pb-28">
+    <div class="grid gap-8 lg:grid-cols-[12rem_1fr] lg:gap-16">
+      <p class="section-label">Journal index / {String(posts.length).padStart(2, "0")}</p>
+      <div>{posts.map((post, index) => <ThinkingItem post={post} index={index} />)}</div>
+    </div>
+  </section>
+</BaseLayout>

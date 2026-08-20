@@ -1,20 +1,29 @@
 export const site = {
   name: "Rhyss Vivian",
   domain: "rhyssvivian.dev",
-  title: "Rhyss Vivian | Infrastructure, Cybersecurity, and Platform Leadership",
+  title: "Rhyss Vivian | Technology Infrastructure & Leadership",
   description:
-    "Senior technology leader with enterprise infrastructure, cybersecurity, IAM, and hands-on platform building experience.",
+    "Field notes on technology infrastructure, systems, architecture, leadership, and the business of building durable platforms.",
   email: "me@rhyssvivian.dev",
   linkedInUrl: "https://www.linkedin.com/in/rhyss-vivian",
   githubUrl: "https://github.com/rvivian",
+  location: {
+    label: "Alaska",
+    latitude: 59,
+  },
   nav: [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
+    { href: "/thinking", label: "Thinking" },
     { href: "/projects", label: "Projects" },
-    { href: "/blog", label: "Blog" },
-    { href: "/contact", label: "Contact" },
+    { href: "/about", label: "About" },
   ],
 } as const;
+
+export const formatLocation = (
+  location: { label: string; latitude: number } = site.location,
+) => {
+  const hemisphere = location.latitude >= 0 ? "N" : "S";
+  return `${location.label.toUpperCase()} · ${Math.abs(Math.round(location.latitude))}° ${hemisphere}`;
+};
 
 export const capabilityAreas = [
   {

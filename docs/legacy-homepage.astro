@@ -1,0 +1,106 @@
+---
+// Archived during the field-journal rebuild.
+import { getCollection } from "astro:content";
+import ProjectCard from "../components/ProjectCard.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { capabilityAreas, proofPoints } from "../data/profile";
+import HomeIdentity from "../components/HomeIdentity.astro";
+
+const projects = (await getCollection("projects"))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+---
+
+<HomeIdentity />
+{false && (
+<BaseLayout>
+  <section class="relative isolate overflow-hidden bg-slate-950 text-white">
+    <img
+      src="/images/platform-leadership-hero.png"
+      alt="A quiet enterprise technology workspace with network diagrams and server lights."
+      class="absolute inset-0 -z-10 h-full w-full object-cover opacity-55"
+    />
+    <div class="absolute inset-0 -z-10 bg-slate-950/45"></div>
+    <div class="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:py-28">
+      <p class="max-w-xs text-sm font-semibold uppercase leading-6 tracking-[0.18em] text-teal-200 sm:max-w-none">
+        Infrastructure / Cybersecurity / Platform Leadership
+      </p>
+      <h1 class="mt-6 max-w-[18ch] text-3xl font-semibold leading-tight tracking-normal sm:max-w-4xl sm:text-6xl">
+        Technical leadership with enterprise infrastructure depth.
+      </h1>
+      <p class="mt-6 max-w-[32ch] text-base leading-8 text-slate-100 sm:max-w-2xl sm:text-lg">
+        I lead infrastructure and security work in complex environments, while building toward
+        platform strategy, automation, and executive technology leadership.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a class="rounded-md px-4 py-2.5 text-sm font-semibold btn-primary focus-ring" href="/projects">
+          View projects
+        </a>
+        <a class="rounded-md border px-4 py-2.5 text-sm font-semibold btn-secondary focus-ring" href="/contact">
+          Contact
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b theme-border theme-surface">
+    <div class="mx-auto grid max-w-6xl gap-4 px-4 py-8 sm:grid-cols-2 sm:px-6 lg:grid-cols-3">
+      {
+        proofPoints.map((point) => (
+          <div class="rounded-lg border theme-card p-4 text-sm font-medium leading-6 theme-muted">
+            {point}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+    <SectionHeading
+      eyebrow="Positioning"
+      title="A practical bridge between operations, security, and strategy."
+      description="The work spans real enterprise systems, hands-on builder habits, and the leadership context needed to make technology decisions hold up."
+    />
+    <div class="mt-10 grid gap-4 md:grid-cols-2">
+      {
+        capabilityAreas.map((area) => (
+          <article class="rounded-lg border theme-card p-6">
+            <h3 class="text-lg font-semibold tracking-normal theme-text">{area.title}</h3>
+            <p class="mt-3 leading-7 theme-muted">{area.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="bg-slate-950 text-white">
+    <div class="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:py-20">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-teal-200">Work in progress</p>
+        <h2 class="mt-3 text-3xl font-semibold tracking-normal sm:text-4xl">Building in public, carefully.</h2>
+        <p class="mt-4 leading-8 text-slate-300">
+          Some enterprise work is intentionally anonymized. The projects page focuses on the
+          leadership patterns, technical domains, and outcomes that can be discussed responsibly.
+        </p>
+      </div>
+      <div class="grid gap-4">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+    <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+      <SectionHeading
+        eyebrow="Next chapter"
+        title="MBA work and writing will become part of the system."
+        description="The blog is ready for essays, course reflections, leadership notes, and platform/security writing as the site grows."
+      />
+      <a class="rounded-md px-4 py-2.5 text-sm font-semibold btn-primary focus-ring" href="/blog">
+        Visit blog
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+)}

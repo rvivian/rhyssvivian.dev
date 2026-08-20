@@ -16,6 +16,10 @@ const projects = defineCollection({
     tags: z.array(z.string()),
     featured: z.boolean().default(false),
     order: z.number().default(99),
+    location: z.object({
+      label: z.string(),
+      latitude: z.number(),
+    }).optional(),
   }),
 });
 
@@ -28,6 +32,13 @@ const blog = defineCollection({
     updatedDate: z.coerce.date().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
+    topic: z.string().default("Field note"),
+    featured: z.boolean().default(false),
+    order: z.number().default(99),
+    location: z.object({
+      label: z.string(),
+      latitude: z.number(),
+    }).optional(),
   }),
 });
 

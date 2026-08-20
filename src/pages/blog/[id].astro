@@ -1,35 +1,11 @@
 ---
-import { getCollection, render } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
-
-  return posts.map((post) => ({
-    params: { id: post.id },
-    props: { post },
-  }));
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+return Astro.redirect(`/thinking/${post.id}`, 301);
 ---
-
-<BaseLayout title={post.data.title} description={post.data.description}>
-  <article>
-    <header class="border-b theme-border theme-surface">
-      <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:py-20">
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] theme-eyebrow">
-          {post.data.pubDate.toLocaleDateString("en-US")}
-        </p>
-        <h1 class="mt-4 text-4xl font-semibold tracking-normal theme-text sm:text-5xl">
-          {post.data.title}
-        </h1>
-        <p class="mt-6 text-lg leading-8 theme-muted">{post.data.description}</p>
-      </div>
-    </header>
-    <div class="content mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:py-16">
-      <Content />
-    </div>
-  </article>
-</BaseLayout>

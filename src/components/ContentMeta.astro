@@ -1,0 +1,20 @@
+---
+import { formatLocation, site } from "../data/profile";
+
+interface Props {
+  topic: string;
+  date?: string;
+  minutes?: number;
+  location?: { label: string; latitude: number };
+}
+
+const { topic, date, minutes, location = site.location } = Astro.props;
+---
+
+<div class="meta flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.65rem] uppercase tracking-[0.11em] theme-soft">
+  <span class="theme-eyebrow">{topic}</span>
+  {date && <><span aria-hidden="true">·</span><span>{date}</span></>}
+  {minutes && <><span aria-hidden="true">·</span><span>{minutes} min</span></>}
+  <span aria-hidden="true">·</span>
+  <span>{formatLocation(location)}</span>
+</div>

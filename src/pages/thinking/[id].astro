@@ -1,0 +1,33 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentMeta from "../../components/ContentMeta.astro";
+import { formatDate, readingTime } from "../../utils/content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <article>
+    <header class="site-shell py-16 sm:py-24">
+      <a class="text-link" href="/thinking">Journal index</a>
+      <div class="mt-12 max-w-4xl">
+        <ContentMeta topic={post.data.topic} date={formatDate(post.data.pubDate)} minutes={readingTime(post.body ?? "")} location={post.data.location} />
+        <h1 class="mt-6 text-4xl font-medium leading-[1.05] tracking-[-0.055em] theme-text sm:text-6xl">{post.data.title}</h1>
+        <p class="mt-7 max-w-2xl text-xl leading-8 theme-muted">{post.data.description}</p>
+      </div>
+    </header>
+    <div class="section-rule">
+      <div class="site-shell grid gap-10 py-12 lg:grid-cols-[12rem_minmax(0,44rem)] lg:gap-16 lg:py-20">
+        <aside class="section-label">Entry / {post.id}</aside>
+        <div class="content"><Content /></div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
