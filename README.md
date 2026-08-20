@@ -21,6 +21,10 @@ npm run build
 npm run preview
 ```
 
+## Contribution Workflow
+
+The `main` branch is protected and cannot be committed to directly. Every change must be developed on a new branch and merged through a pull request. Create each branch from the latest `main`, keep it focused on one change, and do not reuse merged branches.
+
 ## Project Structure
 
 ```text
@@ -45,22 +49,13 @@ Contact links live in `src/data/profile.ts`. Verify the email, LinkedIn, and Git
 
 ## Deployment Notes
 
-The site is static-first and builds to `dist`, so it can deploy to GitHub Pages or Cloudflare Pages.
-
-Cloudflare Pages:
+The production site is hosted by Cloudflare Pages. Merges to `main` trigger production deployments, while pull-request branches can receive preview deployments.
 
 ```text
 Build command: npm run build
 Build output directory: dist
 Root directory: /
 ```
-
-GitHub Pages:
-
-- Use GitHub Actions for Astro static deployment.
-- Build with `npm run build`.
-- Publish the generated `dist` directory.
-- Add `rhyssvivian.dev` as the custom domain in repository Pages settings.
 
 ## Boundaries
 
