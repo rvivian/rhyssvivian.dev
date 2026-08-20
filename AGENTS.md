@@ -1,5 +1,15 @@
 ## Development
 
+### Git workflow
+
+The `main` branch is protected by a GitHub branch ruleset and only accepts changes through pull requests.
+
+- Never commit directly to `main`.
+- Before every discrete change, create a new branch from the latest `main`.
+- Use the `codex/` prefix for branches created by Codex.
+- Keep each branch focused on one change, push it to the remote, and merge it through a pull request.
+- Do not reuse a previously merged branch for later work.
+
 When starting the dev server, use background mode:
 
 ```
