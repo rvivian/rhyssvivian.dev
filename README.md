@@ -1,12 +1,12 @@
 # rhyssvivian.dev
 
-Personal and professional website for Rhyss Vivian, built with Astro, TypeScript, Tailwind CSS, and Markdown content collections.
+Professional field journal for Rhyss Vivian, built with Astro, TypeScript, Tailwind CSS, and Markdown content collections.
 
 ## Purpose
 
 The site positions Rhyss as a senior technology leader with enterprise infrastructure, cybersecurity, IAM, platform, and hands-on builder credibility. The primary audience is future employers for platform, infrastructure, security, and technology leadership roles. Technical collaborators are the secondary audience.
 
-The visual system is dark by default with a persistent light-mode toggle. Accessibility is treated as a first-class requirement: semantic landmarks, skip navigation, visible focus states, current-page navigation state, reduced-motion handling, and high-contrast theme tokens are part of the baseline.
+The visual system combines technical precision with a restrained cartographic vocabulary. It is dark by default with a persistent light-mode toggle, Monaspace structural typography, and IBM Plex Sans for reading. Accessibility remains a first-class requirement: semantic landmarks, skip navigation, visible focus states, current-page navigation state, reduced-motion handling, and high-contrast theme tokens are part of the baseline.
 
 ## Commands
 
@@ -28,7 +28,7 @@ src/pages/             Astro routes
 src/layouts/           Shared document layout
 src/components/        Reusable Astro components
 src/content/projects/  Markdown project entries
-src/content/blog/      Markdown blog drafts and future posts
+src/content/blog/      Markdown entries published under Thinking
 src/data/              Site profile and navigation data
 src/scripts/           Small client-side behavior modules
 src/styles/            Tailwind and global CSS
@@ -39,7 +39,7 @@ docs/spec.md           Approved project spec
 
 ## Content
 
-Projects are Markdown files in `src/content/projects`. Blog posts are Markdown files in `src/content/blog`; set `draft: true` to keep a post out of the built site.
+Projects are Markdown files in `src/content/projects`. Thinking entries are stored in `src/content/blog`; set `draft: true` to keep an entry out of the built site. Both collections support optional location metadata, which otherwise inherits the Alaska site default.
 
 Contact links live in `src/data/profile.ts`. Verify the email, LinkedIn, and GitHub URLs before publishing.
 

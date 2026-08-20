@@ -18,7 +18,8 @@ Success means a reader can understand in under 60 seconds that Rhyss is a strong
 - Markdown content collections
 - Static output
 - npm package management
-- Dark-first visual system with persistent light-mode toggle
+- Dark-first field-journal visual system with persistent light-mode toggle
+- Monaspace Argon for structural typography, IBM Plex Sans for prose, and Monaspace Krypton for code
 
 Hosting remains portable between GitHub Pages and Cloudflare Pages.
 
@@ -40,7 +41,7 @@ src/pages/             Astro routes
 src/layouts/           Shared document layout
 src/components/        Reusable UI sections
 src/content/projects/  Markdown project entries
-src/content/blog/      Markdown blog drafts and future posts
+src/content/blog/      Markdown entries published under Thinking
 src/data/              Site profile and navigation data
 src/scripts/           Client-side behavior modules
 src/styles/            Tailwind and global CSS
@@ -51,7 +52,7 @@ docs/                  Project documentation
 
 ## Code Style
 
-Use focused Astro components, typed content collections, semantic HTML, and Tailwind utilities. Keep styling restrained and professional.
+Use focused Astro components, typed content collections, semantic HTML, and Tailwind utilities. Keep styling restrained, professional, and grounded in a sparse cartographic vocabulary.
 
 ```astro
 ---
@@ -106,9 +107,10 @@ Never:
 ## Success Criteria
 
 - The site builds cleanly as a static Astro site.
-- Pages exist for Home, About, Projects, Blog, and Contact.
+- Primary navigation is Thinking, Projects, and About; Contact remains available through the footer.
+- Pages exist for Home, Thinking, Projects, About, and Contact, with redirects from the former Blog routes.
 - Projects are powered by Markdown content entries.
-- Blog is structurally ready for future writing.
+- Thinking is powered by curated Markdown entries with optional location metadata and derived reading time.
 - The tone is technical plus executive.
 - Dark mode is the primary visual mode, with a working light mode.
 - Core pages meet the project's accessibility baseline.

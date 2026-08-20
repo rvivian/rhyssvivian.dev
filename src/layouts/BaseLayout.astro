@@ -2,16 +2,28 @@
 import SiteFooter from "../components/FieldFooter.astro";
 import SiteHeader from "../components/FieldHeader.astro";
 import { site } from "../data/profile";
+import "@fontsource/ibm-plex-sans/400.css";
+import "@fontsource/ibm-plex-sans/400-italic.css";
+import "@fontsource/ibm-plex-sans/500.css";
+import "@fontsource/ibm-plex-sans/600.css";
+import "@fontsource/monaspace-argon/400.css";
+import "@fontsource/monaspace-argon/500.css";
+import "@fontsource/monaspace-argon/600.css";
+import "@fontsource/monaspace-krypton/400.css";
 import "../styles/field-journal.css";
 
 interface Props {
   title?: string;
   description?: string;
+  image?: string | null;
 }
 
-const { title = site.title, description = site.description } = Astro.props;
+const { title = site.title, description = site.description, image } = Astro.props;
 const pageTitle = title === site.title ? title : `${title} | ${site.name}`;
 const canonicalUrl = new URL(Astro.url.pathname, `https://${site.domain}`).toString();
+const imageUrl = image === null
+  ? null
+  : new URL(image ?? "/og.png", `https://${site.domain}`).toString();
 ---
 
 <!doctype html>
@@ -23,14 +35,13 @@ const canonicalUrl = new URL(Astro.url.pathname, `https://${site.domain}`).toStr
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0c1517" />
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content={new URL("/images/platform-leadership-hero.png", `https://${site.domain}`).toString()} />
+    {imageUrl && <meta property="og:image" content={imageUrl} />}
     <meta name="twitter:card" content="summary_large_image" />
+    {imageUrl && <meta name="twitter:image" content={imageUrl} />}
     <title>{pageTitle}</title>
     <script is:inline>
       (() => {

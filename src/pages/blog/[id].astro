@@ -3,9 +3,8 @@ import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
-  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+  return posts.map((post) => ({ params: { id: post.id } }));
 }
 
-const { post } = Astro.props;
-return Astro.redirect(`/thinking/${post.id}`, 301);
+return Astro.redirect(`/thinking/${Astro.params.id}`, 301);
 ---

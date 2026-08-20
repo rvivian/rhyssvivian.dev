@@ -13,7 +13,7 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description}>
+<BaseLayout title={post.data.title} description={post.data.description} image={null}>
   <article>
     <header class="site-shell py-16 sm:py-24">
       <a class="text-link" href="/thinking">Journal index</a>

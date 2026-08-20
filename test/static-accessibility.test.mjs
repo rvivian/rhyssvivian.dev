@@ -14,11 +14,11 @@ test("layout has document language, dark default, skip navigation, and main land
   assert.match(layout, /<html lang="en" data-theme="dark">/);
   assert.match(layout, /href="#main-content"/);
   assert.match(layout, /<main id="main-content" tabindex="-1">/);
-  assert.match(layout, /<meta name="theme-color" content="#07111f" \/>/);
+  assert.match(layout, /<meta name="theme-color" content="#0c1517" \/>/);
 });
 
 test("primary navigation exposes current page state and accessible theme toggle state", async () => {
-  const header = await readProjectFile("src/components/SiteHeader.astro");
+  const header = await readProjectFile("src/components/FieldHeader.astro");
 
   assert.match(header, /aria-label="Primary navigation"/);
   assert.match(header, /aria-current=\{isActive\(item\.href\) \? "page" : undefined\}/);
@@ -28,7 +28,7 @@ test("primary navigation exposes current page state and accessible theme toggle 
 });
 
 test("global styles include visible focus states and reduced motion handling", async () => {
-  const styles = await readProjectFile("src/styles/global.css");
+  const styles = await readProjectFile("src/styles/field-journal.css");
 
   assert.match(styles, /:focus-visible/);
   assert.match(styles, /outline: 2px solid var\(--color-accent\)/);
