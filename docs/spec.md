@@ -22,7 +22,7 @@ Success means a reader can understand in under 60 seconds that Rhyss is a strong
 - Dark-first field-journal visual system with persistent light-mode toggle
 - Monaspace Argon for structural typography, IBM Plex Sans for prose, and Monaspace Krypton for code
 
-Hosting remains portable between GitHub Pages and Cloudflare Pages.
+Hosted on Cloudflare Pages as a static build with no adapter ([ADR-0003](decisions/0003-host-on-cloudflare-pages.md)). Security headers are served from `public/_headers` ([ADR-0002](decisions/0002-content-security-policy.md)).
 
 ## Commands
 
@@ -91,7 +91,7 @@ Always:
 
 Ask first:
 
-- Final hosting choice.
+- Changing the hosting provider.
 - Analytics.
 - Contact form or any backend service.
 - Public resume link.
@@ -116,7 +116,7 @@ Never:
 - The tone is technical plus executive.
 - Dark mode is the primary visual mode, with a working light mode.
 - Core pages meet the project's accessibility baseline.
-- Deployment remains viable on GitHub Pages or Cloudflare Pages.
+- Production deploys on Cloudflare Pages with the security headers from `public/_headers` applied.
 
 ## Out of Scope for v1
 

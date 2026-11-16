@@ -50,7 +50,7 @@ Contact links live in `src/data/profile.ts`. Verify the email, LinkedIn, and Git
 
 ## Deployment Notes
 
-The production site is hosted by Cloudflare Pages. Merges to `main` trigger production deployments, while pull-request branches can receive preview deployments.
+The production site is hosted by Cloudflare Pages ([ADR-0003](docs/decisions/0003-host-on-cloudflare-pages.md)). Merges to `main` trigger production deployments, while pull-request branches can receive preview deployments.
 
 ```text
 Build command: npm run build
@@ -65,4 +65,5 @@ The build's Node version comes from `.node-version` in the repository root. Do n
 - Do not publish sensitive employer, client, or security implementation details.
 - Do not add analytics, forms, or hosting-specific adapters without a decision.
 - Do not add a resume link until it is explicitly in scope.
+- Do not add inline `style` attributes, unhashed `is:inline` scripts, or third-party resources without updating the CSP. Check with `npm run build` and `npm run preview`, since the CSP does not run in `astro dev`. See [ADR-0002](docs/decisions/0002-content-security-policy.md).
 - Keep the tone technical plus executive: credible, direct, and hands-on.
