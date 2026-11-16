@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "astro dev",
     "test": "node --test",
+    "smoke": "node --test smoke/production.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",

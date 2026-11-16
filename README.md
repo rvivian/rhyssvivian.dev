@@ -16,6 +16,7 @@ Run commands from the project root:
 npm install
 npm run dev
 npm test
+npm run smoke
 npm run check
 npm run build
 npm run preview
@@ -37,9 +38,11 @@ src/data/              Site profile and navigation data
 src/scripts/           Small client-side behavior modules
 src/styles/            Tailwind and global CSS
 test/                  Node tests for client-side behavior, site data, and build configuration
+smoke/                 Production smoke check (network; run with npm run smoke)
 public/images/         Project-owned image assets
 docs/spec.md           Approved project spec
 docs/decisions/        Architecture decision records (ADRs)
+docs/runbooks/         What to do when an alert fires
 ```
 
 ## Content
@@ -59,6 +62,12 @@ Root directory: /
 ```
 
 The build's Node version comes from `.node-version` in the repository root. Do not set a `NODE_VERSION` variable in the Cloudflare Pages dashboard: in practice it overrode `.node-version` without any visible change in the repository, which is how production builds broke on 2026-11-15. To change the Node version, edit `.node-version` in a pull request. `npm test` fails if it falls below the installed Astro's minimum. See [ADR-0001](docs/decisions/0001-node-version-source-of-truth.md).
+
+### Monitoring
+
+- **Production smoke check** (`.github/workflows/production-smoke-check.yml`) runs `npm run smoke` after every merge to `main`, every 6 hours, and on demand. It checks that the latest `main` commit is live, key pages and the RSS feed return 200, the security headers and CSP are in place, and the `www` and `http` redirects work. GitHub emails on failure. Runbook: [docs/runbooks/production-smoke-check.md](docs/runbooks/production-smoke-check.md).
+- **Which commit is live:** every page built by Cloudflare Pages carries `<meta name="build-commit" content="<sha>">`, from Cloudflare's `CF_PAGES_COMMIT_SHA`.
+- **Deploy failures:** a Cloudflare notification, configured in the dashboard under Notifications → Pages → Project updates, filtered to Production and **Deployment failed**.
 
 ## Boundaries
 
