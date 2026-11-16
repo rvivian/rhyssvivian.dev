@@ -16,7 +16,11 @@ astro-dev*.log
 
 # environment variables
 .env
+.env.local
 .env.production
+
+# private keys and certificates
+*.pem
 
 # macOS-specific files
 .DS_Store
