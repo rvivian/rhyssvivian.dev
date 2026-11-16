@@ -1,0 +1,39 @@
+# Checks the live site after every merge to main and every 6 hours.
+# A failure means visitors or the security baseline are affected; GitHub emails on failure.
+# Runbook: docs/runbooks/production-smoke-check.md
+name: Production smoke check
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-smoke-check
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      # Full history so the check can tell whether a newer live commit already contains the expected one.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .node-version
+
+      # Node built-ins only, so no dependency install is needed.
+      - name: Check production
+        run: npm run smoke
+        env:
+          # On main, production should be serving this commit (or a newer one) once Cloudflare deploys.
+          SMOKE_EXPECTED_COMMIT: ${{ github.ref == 'refs/heads/main' && github.sha || '' }}
