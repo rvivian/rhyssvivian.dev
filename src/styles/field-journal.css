@@ -73,6 +73,18 @@ code, pre, kbd { font-family: var(--font-code); }
 .field-grid { background-image: linear-gradient(to right, color-mix(in srgb, var(--color-line) 35%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in srgb, var(--color-line) 28%, transparent) 1px, transparent 1px); background-size: 4rem 4rem; inset: 0; mask-image: linear-gradient(to bottom, black, transparent 90%); opacity: 0.4; pointer-events: none; position: absolute; }
 .contour-field { height: 34rem; opacity: 0.52; pointer-events: none; position: absolute; right: max(-9rem, calc((100vw - 72rem) / 2 - 4rem)); top: 3rem; width: 37rem; }
 .contour-field span { border: 1px solid var(--color-line-strong); border-radius: 44% 56% 61% 39% / 47% 40% 60% 53%; inset: calc(var(--i) * 1.05rem); position: absolute; transform: rotate(calc((var(--i) - 4) * 2.8deg)); }
+/* Ring offsets live here, not in style attributes, so the CSP needs no 'unsafe-inline' for styles. */
+.contour-field span:nth-of-type(1) { --i: 0; }
+.contour-field span:nth-of-type(2) { --i: 1; }
+.contour-field span:nth-of-type(3) { --i: 2; }
+.contour-field span:nth-of-type(4) { --i: 3; }
+.contour-field span:nth-of-type(5) { --i: 4; }
+.contour-field span:nth-of-type(6) { --i: 5; }
+.contour-field span:nth-of-type(7) { --i: 6; }
+.contour-field span:nth-of-type(8) { --i: 7; }
+.contour-field span:nth-of-type(9) { --i: 8; }
+.contour-field span:nth-of-type(10) { --i: 9; }
+.contour-field span:nth-of-type(11) { --i: 10; }
 .contour-field span:nth-child(3n) { border-color: color-mix(in srgb, var(--color-accent) 55%, var(--color-line)); }
 .waypoint { align-items: center; display: flex; height: 3rem; justify-content: center; left: 51%; position: absolute; top: 45%; width: 3rem; }
 .waypoint::before, .waypoint::after { background: var(--color-copper); content: ""; position: absolute; }
