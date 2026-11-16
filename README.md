@@ -62,4 +62,5 @@ Root directory: /
 - Do not publish sensitive employer, client, or security implementation details.
 - Do not add analytics, forms, or hosting-specific adapters without a decision.
 - Do not add a resume link until it is explicitly in scope.
+- Do not add inline `style` attributes, unhashed `is:inline` scripts, or third-party resources without updating the CSP. Check with `npm run build` and `npm run preview`, since the CSP does not run in `astro dev`. See [ADR-0002](docs/decisions/0002-content-security-policy.md).
 - Keep the tone technical plus executive: credible, direct, and hands-on.
