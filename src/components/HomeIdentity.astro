@@ -17,7 +17,7 @@ const projects = (await getCollection("projects", ({ data }) => data.featured))
   <section class="field-hero">
     <div class="field-grid" aria-hidden="true"></div>
     <div class="contour-field" aria-hidden="true">
-      {Array.from({ length: 11 }, (_, index) => <span style={`--i: ${index}`}></span>)}
+      {Array.from({ length: 11 }, () => <span></span>)}
       <div class="waypoint"><i></i></div>
     </div>
     <div class="site-shell relative h-full">
