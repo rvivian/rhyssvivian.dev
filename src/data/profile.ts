@@ -9,7 +9,7 @@ export const site = {
   githubUrl: "https://github.com/rvivian",
   location: {
     label: "Alaska",
-    latitude: 59,
+    latitude: 61,
   },
   nav: [
     { href: "/thinking", label: "Thinking" },

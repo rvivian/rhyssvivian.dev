@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { formatLocation } from "../data/profile";
+import { formatLocation, site } from "../data/profile";
 import ThinkingItem from "./ThinkingItem.astro";
 import FieldProjectCard from "./FieldProjectCard.astro";
 
@@ -31,7 +31,7 @@ const projects = (await getCollection("projects", ({ data }) => data.featured))
       <div class="hero-index theme-soft">
         <span>{formatLocation()}</span>
         <span class="hidden sm:inline">Waypoint 01 · True North</span>
-        <span>59.000 N</span>
+        <span>{site.location.latitude.toFixed(3)} N</span>
       </div>
     </div>
   </section>
