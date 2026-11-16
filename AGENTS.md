@@ -6,7 +6,7 @@ The `main` branch is protected by a GitHub branch ruleset and only accepts chang
 
 - Never commit directly to `main`.
 - Before every discrete change, create a new branch from the latest `main`.
-- Use the `codex/` prefix for branches created by Codex.
+- Use the `claude/` prefix for branches created by Claude.
 - Keep each branch focused on one change, push it to the remote, and merge it through a pull request.
 - Do not reuse a previously merged branch for later work.
 
