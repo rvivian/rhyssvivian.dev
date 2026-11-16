@@ -26,6 +26,8 @@ npm run preview
 
 The `main` branch is protected and cannot be committed to directly. Every change must be developed on a new branch and merged through a pull request. Create each branch from the latest `main`, keep it focused on one change, and do not reuse merged branches.
 
+Pull requests merge themselves. CI (`verify`: tests, type check, build, dependency audit) and the Cloudflare Pages preview build are required checks. A non-draft PR from this repository gets auto-merge enabled when it opens, merges once both checks pass, and its branch is deleted. To hold a PR for review, open it as a draft or run `gh pr merge --disable-auto <number>`. See [ADR-0004](docs/decisions/0004-auto-merge-on-green-checks.md).
+
 ## Project Structure
 
 ```text
@@ -65,7 +67,7 @@ The build's Node version comes from `.node-version` in the repository root. Do n
 
 ### Monitoring
 
-- **Production smoke check** (`.github/workflows/production-smoke-check.yml`) runs `npm run smoke` after every merge to `main`, every 6 hours, and on demand. It checks that the latest `main` commit is live, key pages and the RSS feed return 200, the security headers and CSP are in place, and the `www` and `http` redirects work. GitHub emails on failure. Runbook: [docs/runbooks/production-smoke-check.md](docs/runbooks/production-smoke-check.md).
+- **Production smoke check** (`.github/workflows/production-smoke-check.yml`) runs `npm run smoke` after every production deploy (triggered by Cloudflare's `Cloudflare Pages` check on `main`), every 6 hours, and on demand. It fails if the deploy itself failed, and otherwise checks that the deployed commit is live, key pages and the RSS feed return 200, the security headers and CSP are in place, and the `www` and `http` redirects work. GitHub emails on failure. Runbook: [docs/runbooks/production-smoke-check.md](docs/runbooks/production-smoke-check.md).
 - **Which commit is live:** every page built by Cloudflare Pages carries `<meta name="build-commit" content="<sha>">`, from Cloudflare's `CF_PAGES_COMMIT_SHA`.
 - **Deploy failures:** a Cloudflare notification, configured in the dashboard under Notifications → Pages → Project updates, filtered to Production and **Deployment failed**.
 

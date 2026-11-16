@@ -9,6 +9,7 @@ The `main` branch is protected by a GitHub branch ruleset and only accepts chang
 - Use the `claude/` prefix for branches created by Claude.
 - Keep each branch focused on one change, push it to the remote, and merge it through a pull request.
 - Do not reuse a previously merged branch for later work.
+- Pull requests auto-merge to production once CI (`verify`) and the Cloudflare Pages preview pass. Open a PR as a draft when the owner should review it first, and run `npm test`, `npm run check`, and `npm run build` locally before opening any PR.
 
 When starting the dev server, use background mode:
 

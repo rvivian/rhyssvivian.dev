@@ -1,0 +1,28 @@
+# Turns on GitHub's native auto-merge for pull requests from this repository.
+# GitHub merges only after the ruleset's required checks pass (CI "verify" and "Cloudflare Pages"),
+# then deletes the branch via the repository's "Automatically delete head branches" setting.
+# Opt out: open the PR as a draft, or run `gh pr merge --disable-auto <number>`.
+# Decision record: docs/decisions/0004-auto-merge-on-green-checks.md
+name: Auto-merge
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  enable:
+    # Fork PRs get a read-only token and must never merge unattended.
+    if: github.event.pull_request.head.repo.full_name == github.repository && !github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Enable auto-merge
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ github.token }}

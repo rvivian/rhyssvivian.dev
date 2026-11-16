@@ -72,7 +72,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ## Testing Strategy
 
 - `npm test` runs the Node test runner over `test/`: theme-toggle behavior, accessibility markup, site location data, and the guard that keeps `.node-version` at or above Astro's minimum Node version.
-- `npm run smoke` checks the live site (deployed commit, page status, security headers, CSP, redirects). It runs in GitHub Actions after merges to `main` and every 6 hours, and stays out of `npm test` because it needs the network.
+- `npm run smoke` checks the live site (deployed commit, page status, security headers, CSP, redirects). It runs in GitHub Actions after each production deploy and every 6 hours, and stays out of `npm test` because it needs the network.
 - `npm run check` validates Astro, TypeScript, and content collection typing.
 - `npm run build` verifies the static production output.
 - Manual browser checks cover desktop and mobile layout before publishing.
