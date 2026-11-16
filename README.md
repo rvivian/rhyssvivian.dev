@@ -36,9 +36,10 @@ src/content/blog/      Markdown entries published under Thinking
 src/data/              Site profile and navigation data
 src/scripts/           Small client-side behavior modules
 src/styles/            Tailwind and global CSS
-test/                  Node tests for client-side behavior
+test/                  Node tests for client-side behavior, site data, and build configuration
 public/images/         Project-owned image assets
 docs/spec.md           Approved project spec
+docs/decisions/        Architecture decision records (ADRs)
 ```
 
 ## Content
@@ -56,6 +57,8 @@ Build command: npm run build
 Build output directory: dist
 Root directory: /
 ```
+
+The build's Node version comes from `.node-version` in the repository root. Do not set a `NODE_VERSION` variable in the Cloudflare Pages dashboard: in practice it overrode `.node-version` without any visible change in the repository, which is how production builds broke on 2026-11-15. To change the Node version, edit `.node-version` in a pull request. `npm test` fails if it falls below the installed Astro's minimum. See [ADR-0001](docs/decisions/0001-node-version-source-of-truth.md).
 
 ## Boundaries
 

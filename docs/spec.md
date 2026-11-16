@@ -18,6 +18,7 @@ Success means a reader can understand in under 60 seconds that Rhyss is a strong
 - Markdown content collections
 - Static output
 - npm package management
+- Node version pinned in `.node-version` ([ADR-0001](decisions/0001-node-version-source-of-truth.md))
 - Dark-first field-journal visual system with persistent light-mode toggle
 - Monaspace Argon for structural typography, IBM Plex Sans for prose, and Monaspace Krypton for code
 
@@ -45,7 +46,7 @@ src/content/blog/      Markdown entries published under Thinking
 src/data/              Site profile and navigation data
 src/scripts/           Client-side behavior modules
 src/styles/            Tailwind and global CSS
-test/                  Node tests for behavior modules
+test/                  Node tests for behavior modules, site data, and build configuration
 public/images/         Static image assets
 docs/                  Project documentation
 ```
@@ -70,6 +71,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 ## Testing Strategy
 
+- `npm test` runs the Node test runner over `test/`: theme-toggle behavior, accessibility markup, site location data, and the guard that keeps `.node-version` at or above Astro's minimum Node version.
 - `npm run check` validates Astro, TypeScript, and content collection typing.
 - `npm run build` verifies the static production output.
 - Manual browser checks cover desktop and mobile layout before publishing.
