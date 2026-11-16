@@ -49,7 +49,7 @@ Contact links live in `src/data/profile.ts`. Verify the email, LinkedIn, and Git
 
 ## Deployment Notes
 
-The production site is hosted by Cloudflare Pages. Merges to `main` trigger production deployments, while pull-request branches can receive preview deployments.
+The production site is hosted by Cloudflare Pages ([ADR-0003](docs/decisions/0003-host-on-cloudflare-pages.md)). Merges to `main` trigger production deployments, while pull-request branches can receive preview deployments.
 
 ```text
 Build command: npm run build
