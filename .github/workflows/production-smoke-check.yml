@@ -1,11 +1,14 @@
-# Checks the live site after every merge to main and every 6 hours.
+# Checks the live site after every production deploy and every 6 hours.
 # A failure means visitors or the security baseline are affected; GitHub emails on failure.
 # Runbook: docs/runbooks/production-smoke-check.md
 name: Production smoke check
 
 on:
-  push:
-    branches: [main]
+  # Cloudflare reports each deploy as a "Cloudflare Pages" check run. It fires whoever merged,
+  # including auto-merge (whose workflow-token merges do not trigger `push` workflows), and it
+  # arrives once production is actually updated or the deploy has failed.
+  check_run:
+    types: [completed]
   schedule:
     - cron: "17 */6 * * *"
   workflow_dispatch:
@@ -13,15 +16,29 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: production-smoke-check
-  cancel-in-progress: true
-
 jobs:
   smoke:
+    # Every check run in the repo triggers this workflow; only production deploys of main matter.
+    if: >-
+      github.event_name != 'check_run' ||
+      (github.event.check_run.name == 'Cloudflare Pages' &&
+       github.event.check_run.check_suite.head_branch == 'main')
+    # Job-level so the skipped runs from other check runs never cancel a real one.
+    concurrency:
+      group: production-smoke-check
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - name: Fail if the production deploy failed
+        if: github.event_name == 'check_run' && github.event.check_run.conclusion != 'success'
+        run: |
+          echo "::error::Cloudflare production deploy of $HEAD_SHA concluded '$CONCLUSION'. The previous deploy is still serving. See the runbook."
+          exit 1
+        env:
+          HEAD_SHA: ${{ github.event.check_run.head_sha }}
+          CONCLUSION: ${{ github.event.check_run.conclusion }}
+
       # Full history so the check can tell whether a newer live commit already contains the expected one.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -35,5 +52,6 @@ jobs:
       - name: Check production
         run: npm run smoke
         env:
-          # On main, production should be serving this commit (or a newer one) once Cloudflare deploys.
-          SMOKE_EXPECTED_COMMIT: ${{ github.ref == 'refs/heads/main' && github.sha || '' }}
+          # After a deploy, production must serve the deployed commit (or a newer one). On a
+          # schedule or manual run from main, it must serve main's latest commit.
+          SMOKE_EXPECTED_COMMIT: ${{ github.event.check_run.head_sha || (github.ref == 'refs/heads/main' && github.sha) || '' }}
