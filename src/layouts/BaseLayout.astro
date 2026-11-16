@@ -4,6 +4,7 @@ import SiteHeader from "../components/FieldHeader.astro";
 import { site } from "../data/profile";
 // set:html is safe here: the value is a constant authored in the repo, never user input.
 import { themeInitScript } from "../scripts/theme-init.js";
+import { CF_PAGES_COMMIT_SHA } from "astro:env/server";
 import "@fontsource/ibm-plex-sans/400.css";
 import "@fontsource/ibm-plex-sans/400-italic.css";
 import "@fontsource/ibm-plex-sans/500.css";
@@ -34,6 +35,7 @@ const imageUrl = image === null
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    {CF_PAGES_COMMIT_SHA && <meta name="build-commit" content={CF_PAGES_COMMIT_SHA} />}
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0c1517" />
     <link rel="canonical" href={canonicalUrl} />

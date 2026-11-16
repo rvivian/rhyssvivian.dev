@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 import { themeInitScript } from './src/scripts/theme-init.js';
@@ -12,6 +12,13 @@ const themeInitHash = `sha256-${btoa(String.fromCharCode(...new Uint8Array(diges
 
 // https://astro.build/config
 export default defineConfig({
+  env: {
+    schema: {
+      // Injected by Cloudflare Pages builds. Rendered as <meta name="build-commit"> so the
+      // production smoke check (and anyone) can tell which commit is live. Absent locally.
+      CF_PAGES_COMMIT_SHA: envField.string({ context: 'server', access: 'public', optional: true }),
+    },
+  },
   security: {
     // Astro emits this as a per-page <meta> CSP with hashes for its scripts and styles.
     // Directives a <meta> CSP ignores (frame-ancestors) are sent from public/_headers.
